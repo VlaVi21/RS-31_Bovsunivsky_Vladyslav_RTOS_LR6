@@ -62,24 +62,63 @@ $$F_{PWM} = \frac{100,000,000}{(99 + 1) \cdot (1999 + 1)} = 500 \text{ Гц}$$
 
 - **Програмний антидребезг:** Реалізовано через перевірку системних тіків HAL_GetTick(), що дозволяє ігнорувати помилкові спрацьовування контактів без зупинки всього мікроконтролера.
 
-<img width="1280" height="747" alt="image" src="https://github.com/user-attachments/assets/335c3309-17f3-4712-bcd7-f6db015e67f7" />
-**Налаштування таймера TIM3 (PWM Generation)**
+Зрозумів, спокійно! Щоб на GitHub картинки та підписи до них виглядали не як "просто текст під купою пікселів", а як структуровані блоки, найкраще використати комбінацію HTML-тегів (центрирування та підписи) або Markdown-цитат.
 
+Ось як переробити твій розділ "Налаштування периферії", щоб він виглядав професійно і "не розповзався":
 
-<img width="515" height="148" alt="image" src="https://github.com/user-attachments/assets/435e07ee-d21c-439a-9936-e1c31952bd14" />
-**Параметри каналу ШІМ (PWM Channel Settings)**
+Варіант для копіювання в README.md:
+Markdown
+---
+### 🛠️ Налаштування периферії
 
+Для цієї роботи реалізовано апаратну генерацію ШІМ у поєднанні з перериваннями EXTI.
 
-<img width="1239" height="1013" alt="image" src="https://github.com/user-attachments/assets/505270ca-aefc-4ce5-a193-b47fa7dd58e7" />
-**Конфігурація джерела тактування (RCC)**
+**Переваги обраної архітектури:**
+* **Автономність:** Таймер 3 самостійно керує станом піна PA6. Навіть якщо програма "зависне", ШІМ продовжуватиме працювати.
+* **Відсутність блокування:** Процесор прокидається лише в момент натискання (Falling Edge), виконує Callback і миттєво повертається до основної роботи.
+* **Програмний антидребезг:** Реалізовано через `HAL_GetTick()`, що ігнорує брязкіт контактів без зупинки всього мікроконтролера.
 
+<br>
 
-<img width="1280" height="666" alt="image" src="https://github.com/user-attachments/assets/791ab990-3b34-4ade-a3fa-bd46e78a97dd" />
-**Дерево тактування (Clock Tree)**
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/335c3309-17f3-4712-bcd7-f6db015e67f7" width="90%" />
+  <br>
+  <b><i>Рис 1. Налаштування таймера TIM3 (PWM Generation)</i></b>
+</p>
 
+---
 
-<img width="1280" height="672" alt="image" src="https://github.com/user-attachments/assets/7576c8cb-1e34-4b6d-9ee6-e8fc5c120e1e" />
-**Налаштування переривань (NVIC)**
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/435e07ee-d21c-439a-9936-e1c31952bd14" width="70%" />
+  <br>
+  <b><i>Рис 2. Параметри каналу ШІМ (PWM Channel Settings)</i></b>
+</p>
+
+---
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/505270ca-aefc-4ce5-a193-b47fa7dd58e7" width="80%" />
+  <br>
+  <b><i>Рис 3. Конфігурація джерела тактування (RCC)</i></b>
+</p>
+
+---
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/791ab990-3b34-4ade-a3fa-bd46e78a97dd" width="90%" />
+  <br>
+  <b><i>Рис 4. Дерево тактування (Clock Tree)</i></b>
+</p>
+
+---
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/7576c8cb-1e34-4b6d-9ee6-e8fc5c120e1e" width="90%" />
+  <br>
+  <b><i>Рис 5. Налаштування переривань (NVIC)</i></b>
+</p>
+
+<br>
 
 ---
 ### ⁉️Як запустити:
